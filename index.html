@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e791923922.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/WOW-master/css/libs/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/Bootstrap/all.min.css">
+    <link rel="stylesheet" href="./CSS/Bootstrap/bootstrap.min.css">
+    <title>Learn JavaScript</title>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        #sans {
+            font-family: sans-serif;
+        }
+
+        #pop {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            margin: 20px auto;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .form {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .input {
+            padding: 15px;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 6px;
+            flex: 1;
+            margin-bottom: 30px;
+        }
+
+        .input:focus {
+            outline: none;
+        }
+
+        .add {
+            border: none;
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin-left: 10px;
+            cursor: pointer;
+            margin: auto;
+            width: 20%;
+            border: 1px red solid;
+            transition: .5s;
+        }
+
+        .add:hover {
+            background-color: white;
+            color: red;
+            border: 1px red solid;
+        }
+
+        @media screen and (max-width:650px) {
+            .add {
+                width: 50%;
+            }
+        }
+
+        .tasks {
+            background-color: #eee;
+            margin-top: 20px;
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .tasks .task {
+            background-color: white;
+            padding: 15px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        .tasks .task:not(:last-child) {
+            margin-bottom: 15px;
+        }
+
+        .tasks .task:hover {
+            background-color: #f7f7f7;
+        }
+
+        .tasks .task.done {
+            opacity: .6;
+        }
+
+        .task.done #true {
+            display: block;
+            opacity: 1;
+        }
+
+        .task.done i {
+            display: none;
+        }
+
+        #true {
+            padding: 5px 0px;
+            font-size: 18px;
+        }
+
+        .tasks .task span {
+            font-weight: bold;
+            font-size: 16px;
+            background-color: red;
+            color: white;
+            padding: 0px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .task.done span {
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        #true {
+            display: none;
+            color: rgb(13, 255, 0);
+        }
+
+        i {
+            transition: .5s;
+        }
+
+        .tasks .task span:hover i {
+            transform: scale(.5);
+        }
+
+        .settings {
+            float: right;
+        }
+
+        .darkmood {
+            background: #333;
+            color: white;
+        }
+
+        .darkmood .tasks {
+            background: #222;
+        }
+
+        .darkmood .task {
+            background: #111;
+        }
+
+        .darkmood .task:hover {
+            background: black;
+        }
+
+        .darkmood .add {
+            background: rgb(94, 2, 2);
+        }
+
+        .darkmood #offcanvasExample {
+            background-color: #333;
+        }
+
+        .darkmood #delall {
+            background: rgb(125, 5, 5) !important;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 50px;
+            font-weight: bold;
+        }
+
+        .footer a {
+            font-weight: 700;
+            text-decoration: none;
+            transition: .5s;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="settings">
+            <button class="btn btn-secondary" style="padding: 3px 7px  ;" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+                aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><b>Settings</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div>
+                        <div class="setting">
+                            <p>Theme : </p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Choose a Theme
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a onclick="lightmood()" class="dropdown-item" href="#">Light Mood</a></li>
+                                    <li><a onclick="darkmood()" class="dropdown-item" href="#">Dark Mood</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="setting">
+                            <p>Font Size : </p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Choose a Font Size
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a onclick="small()" class="dropdown-item" href="#">Small</a></li>
+                                    <li><a onclick="med()" class="dropdown-item" href="#">Medium (Default)</a></li>
+                                    <li><a onclick="large()" class="dropdown-item" href="#">Large</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="setting">
+                            <p>Font Family : </p>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Choose a Font Family
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a style="font-family: 'Quicksand', sans-serif !important ;" onclick="first()"
+                                            class="dropdown-item" href="#">Quicksand (Default)</a></li>
+                                    <li><a style="font-family: sans-serif !important;" onclick="sec()"
+                                            class="dropdown-item" href="#">Sans Serif</a></li>
+                                    <li><a style="font-family: 'Poppins', sans-serif !important ;" onclick="third()"
+                                            class="dropdown-item" href="#">Poppins</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="footer">
+                            <p>Website Owner And Creator :</p>
+                            <a href="https://horastech.github.io/portfolio/" target="_blank">Omar Bashir</a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="title">
+            <h1>To Do List</h1>
+            <hr>
+        </div>
+
+        <div class="form">
+            <input placeholder="What Will You Do ?" type="text" class="input" />
+            <input type="submit" class="add" value="Add Task" />
+        </div>
+        <div style="justify-content: space-between; display: flex; margin-top: 10px;" class="deleteall">
+            <a id="delall" class="wow animate__fadeIn" onclick="deleteAll()"
+                style="text-align: center; cursor: pointer; text-decoration: none; color: white; background-color: red; padding: 6px 8px; border-radius: 3px; width: auto; margin: 10px;">Delete
+                All <i class="fa-solid fa-trash"></i></a>
+
+
+            <!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> -->
+
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="..." class="rounded me-2" alt="...">
+                        <strong class="me-auto">Bootstrap</strong>
+                        <small>11 mins ago</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Hello, world! This is a toast message.
+                    </div>
+                </div>
+            </div>
+
+            <!-- <a onclick="delcomp()" style="cursor: pointer; color: white; background-color: green; padding: 6px 8px; border-radius: 3px; width: auto; margin: 10px; text-align: center;">Delete Completed Tasks</a> -->
+        </div>
+        <div class="tasks"></div>
+    </div>
+    <script src="./CSS/WOW-master/dist/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+
+
+    <script src="./JS/bootstrap.bundle.min.js"></script>
+    <script src="./JS/main.js"></script>
+</body>
+
+</html>
